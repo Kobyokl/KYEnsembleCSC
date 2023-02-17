@@ -1,3 +1,5 @@
+//video collage and text change scripts
+
 // button script
 $("#opbutton").mouseover(function() {
     var audio = new Audio('js/first_select.mp3');
@@ -5,5 +7,3 @@ $("#opbutton").mouseover(function() {
     audio.play();
 })
 
-
-//video collage and text change scripts
