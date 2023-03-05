@@ -1,0 +1,29 @@
+body{
+    background-image: linear-gradient(to right, #291c0c, #63412b, #3e3724);
+
+    font-family: 'Times New Roman', Times, serif;
+    padding: 16px;
+    margin:0; 
+}
+
+.threejs{
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+.randomtext{
+    text-align: center;
+    color:aliceblue;
+    font-size: 36px; 
+    z-index: 1;
+
+}
+
+.fadeobj{
+    z-index: -1;
+
+    background:#17161f;
+
+    width: 100%;
+    height: 100px;
+}

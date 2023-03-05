@@ -3,27 +3,33 @@
 <html> 
 
 <head>
-    <link rel = "stylesheet" href = "styles.css"> 
+    <meta charset="utf-8">
+    
+    <link rel = "stylesheet" href = "css/menu.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+
     <title>Ensemble</title>
 </head>
+
 <body>
+
+    <video class ="BG_VIDS"  id ="BG_VIDS"  src="backgroundVideos/Miroirs_1.mp4"   type="video/mp4"  autoplay loop muted ></video>
+
     <form>
-        
-        <video autoplay loop muted autoplay class = "y7u">
-            <source src = "backgroundVideos/">
-        </video>
 
-        <button type="button" id = "opbutton"></button> 
+        <button type="button" class = "opbutton" onclick = 'startApp()'></button> 
 
-        <div id='textbox'>
+        <div class = 'vidblock'> </div>
+
+        <div class ='textbox'>
             <p><b> fjhaojfd s <br> dfjsdkjflsjfd <br> skfsldfkdss </b></p>
         </div>
 
-
     </form>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="jquery-background-video/jquery.background-video.js"></script>
     <script src ="js/menu.js"></script>
 
 </body>
