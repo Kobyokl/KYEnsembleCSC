@@ -102,10 +102,11 @@ function animate(){
     for(let i = 0; i < intersects.length; i++){
       intersects[i].object.material.color.set( generateHexColor() );
     }
+
     
 
     renderer.render(scene, camera);
-
+    
 }
 
 function camDrag(){
@@ -121,9 +122,6 @@ function camDrag(){
   renderer.domElement.addEventListener('touchend', onTouchEnd);
 
   function onMouseDown(event) {
-    pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	  pointer.y = -( event.clientY / window.innerHeight ) * 2 + 1;
-
     lastX = event.clientX;
     lastY = event.clientY;
     
@@ -138,11 +136,19 @@ function camDrag(){
       const deltaY = event.clientY - lastY;
       camera.position.x += deltaX / 25;
       camera.position.y -= deltaY / 25; 
+
       lastX = event.clientX;
       lastY = event.clientY;
 
+      
+
       camera.lookAt(scene.position);
     }
+
+    pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1.015;
+	  pointer.y = -( event.clientY / window.innerHeight ) * 2 + 1 + 0.01;
+    console.log(truncateDecimals(pointer.x, 3));
+    console.log(truncateDecimals(pointer.y, 3));
   }
 
   function onMouseUp(event) {
