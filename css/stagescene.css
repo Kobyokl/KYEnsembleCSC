@@ -1,5 +1,4 @@
 body{
-    background-image: linear-gradient(to right, #291c0c, #63412b, #3e3724);
 
     font-family: 'Times New Roman', Times, serif;
     padding: 16px;
@@ -8,10 +7,9 @@ body{
 
 .threejs{
     position: absolute;
-    left: 20px;
-    top: 0;
 }
 .randomtext{
+    display: none; 
     text-align: center;
     color:aliceblue;
     font-size: 36px; 
@@ -20,6 +18,8 @@ body{
 }
 
 .fadeobj{
+    display: none; 
+
     z-index: -1;
 
     background:#17161f;
