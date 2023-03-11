@@ -2,6 +2,7 @@
 import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 
 const scene = new THREE.Scene(); 
+const loader = new THREE.TextureLoader();
 const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, .1, 1000 );
 const renderer = new THREE.WebGLRenderer();
 const raycaster = new THREE.Raycaster();
@@ -10,51 +11,43 @@ const pointer = new THREE.Vector2();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+const planeSize = 50; 
 const light = new THREE.PointLight(0xffffff, 1, 100);
+const testTexture = loader.load('CNTRLSHIFTCOMP\imgs\baseplatetexture.png');
+
+testTexture.wrapS = THREE.RepeatWrapping;
+testTexture.wrapT = THREE.RepeatWrapping;
+testTexture.magFilter = THREE.NearestFilter;
+const repeats = planeSize / 2;
+testTexture.repeat.set(repeats, repeats); 
+
+const planeGeom = new THREE.PlaneGeometry(planeSize, planeSize);
+const planeMater = new THREE.MeshBasicMaterial({ map: testTexture, side: THREE.DoubleSide,});
+
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const randomGeometry = new THREE.BoxGeometry((Math.random() * 12 + 2), (Math.random() * 12 + 2), (Math.random() * 12 + 2))
-const planeGeometry = new THREE.BoxGeometry(10 , 1 , 10);
 const material = new THREE.MeshBasicMaterial( { color: 0x646e8f } );
 const cube = new THREE.Mesh( geometry, material );
-const plane = new THREE.Mesh( planeGeometry, material);
 
 init();
 animate(); 
 
 
 function init(){
- 
 
-  for( let i = 0; i < 3000; i++ ){
-    const jack = new THREE.Mesh(randomGeometry, new THREE.MeshBasicMaterial( { color: generateHexColor() } ));
-
-    jack.position.x = Math.random() * 800 - 400;
-    jack.position.y = Math.random() * 800 - 400;
-    jack.position.z = Math.random() * 800 - 400;
-
-    /* the math.pi allows math.random to generate an angle between 0 and 360 but in radians. */ 
-    jack.rotation.x = Math.random() * 2 * Math.PI;
-    jack.rotation.y = Math.random() * 2 * Math.PI;
-    jack.rotation.z = Math.random() * 2 * Math.PI;
-
-    jack.scale.y = (Math.random() + .5);
-    jack.scale.x = (Math.random() + .5);
-    jack.scale.z = (Math.random() + .5);
-
-    scene.add(jack); 
-  }
-
-  scene.background = new THREE.Color(0xffffff); 
+  scene.background = new THREE.Color(0x474749); 
+  const mesh = new THREE.Mesh(planeGeom, planeMater);
+  mesh.rotation.x = Math.PI * -.5;
+  planeMater.color.setRGB(1.5, 1.5 ,1.5); 
 
   scene.add( light );
   scene.add( camera );
   scene.add( cube );
-  scene.add( plane );
-  // scene.add( light );
+  scene.add( light );
+  scene.add( mesh );
 
-  light.position.set(0, 10, 10);
-  cube.position.set(0, 0, 1);
+  light.position.set(0, 40, 10);
+  cube.position.set(0, 1, 1);
 
   camera.position.z = 7; 
   camera.position.set(10, 20, 25); 
@@ -65,30 +58,9 @@ function init(){
   });
 
   camDrag();
+
 }
 
-function generateHexColor() {
-  const hexDigits = '0123456789abcdef';
-  let hexcolor = '0x';
-  let hash = 0;
-  for (let i = 0; i < 6; i++) {
-    hexcolor += hexDigits[Math.floor(Math.random() * 16)];
-  }
-
-  for (var i = 0; i < hexcolor.length; i++) {
-    hash = hexcolor.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  return hash;
-}
-
-function truncateDecimals(number, digits) {
-  var multiplier = Math.pow(10, digits);
-  var adjustedNum = number * multiplier;
-  var truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
-
-  return truncatedNum / multiplier;
-}
 function animate(){
     window.requestAnimationFrame(animate);
 
@@ -103,12 +75,31 @@ function animate(){
       intersects[i].object.material.color.set( generateHexColor() );
     }
 
-    
 
     renderer.render(scene, camera);
     
 }
+function truncateDecimals(number, digits) {
+  var multiplier = Math.pow(10, digits);
+  var adjustedNum = number * multiplier;
+  var truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
 
+  return truncatedNum / multiplier;
+}
+function generateHexColor() {
+  const hexDigits = '0123456789abcdef';
+  let hexcolor = '0x';
+  let hash = 0;
+  for (let i = 0; i < 6; i++) {
+    hexcolor += hexDigits[Math.floor(Math.random() * 16)];
+  }
+
+  for (var i = 0; i < hexcolor.length; i++) {
+    hash = hexcolor.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  return hash;
+}
 function camDrag(){
   var lastX = 0; 
   var lastY  = 0; 
@@ -125,8 +116,6 @@ function camDrag(){
     lastX = event.clientX;
     lastY = event.clientY;
     
-    console.log(truncateDecimals(pointer.x, 3));
-    console.log(truncateDecimals(pointer.y, 3));
   }
 
   function onMouseMove(event) {   
@@ -140,15 +129,11 @@ function camDrag(){
       lastX = event.clientX;
       lastY = event.clientY;
 
-      
-
       camera.lookAt(scene.position);
     }
 
     pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1.015;
 	  pointer.y = -( event.clientY / window.innerHeight ) * 2 + 1 + 0.01;
-    console.log(truncateDecimals(pointer.x, 3));
-    console.log(truncateDecimals(pointer.y, 3));
   }
 
   function onMouseUp(event) {
