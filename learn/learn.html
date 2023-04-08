@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+
+<html> 
+
+<head>
+
+    <title>Learn</title>
+
+    <meta charset="utf-8">
+    
+    <link rel = "stylesheet" href = "learn.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <canvas id = 'c'></canvas>
+    <!-- this overlay is to just stop the user from clicking on an instrument before they actually click the begin button-->
+    <div class = 'blankoverlay'></div>
+
+    <div class = "WelcomeOverlay">
+        <h1 class = 'title'>L  E  A  R  N</h1>
+        <textarea class = "welcometextbox" readonly placeholder="Lorem ipsumdolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enimdolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enimdolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enimdolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enimdolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enim dolor sit amet, consectetur adipiscing elit. Fusce vel odio arcu. Donec at mauris sit amet mauris commodo aliquet id vitae dolor. Donec vel lorem sed enim pharetra fermentum. Donec vel bibendum arcu. Sed eu ex mi. Integer vel lorem vitae quam venenatis posuere. Nullamultrices vestibulum lorem, quis auctor eros tincidunt vel. In vitae mag na nunc."></textarea>
+        <button class = 'welcomeButton' id = 'wButton' role = 'buttom'>⠀⠀Begin⠀⠀</button>
+    </div>
+
+    <div class = "InfoBoxes">
+        <textarea class = 'pianotextbox' readonly placeholder="this the text for da piano"></textarea>
+        <textarea class = 'drumstextbox' readonly placeholder = "this is da text for the drumasss"></textarea>"
+        <textarea class = 'guitartextbox' readonly placeholder = "texto para la guitarra"></textarea>
+        <textarea class = "saxtextbox" readonly placeholder = "this is text that is for the saxophonneeee"></textarea>
+    </div>
+
+    </div>
+    <script  type="importmap">{
+        "imports": {
+            "three": "https://threejs.org/build/three.module.js",
+            "three/addons/": "https://threejs.org/examples/jsm/"
+        }
+    }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+     
+    <script type = 'module' src = 'learn.js'></script>
+</body>
+
+</html>

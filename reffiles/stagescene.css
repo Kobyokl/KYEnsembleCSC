@@ -1,0 +1,23 @@
+body{
+    background-color:rgb(127, 163, 73);
+    font-family: 'Times New Roman', Times, serif;
+    padding: 16px;
+    margin:0; 
+}
+
+.threejs{
+    position: absolute;
+}
+
+.fadeobj{
+    display: none; 
+
+    z-index: -1;
+
+    background:#17161f;
+
+    width: 100%;
+    height: 100px;
+}
+
+/*stuff for all the information */
