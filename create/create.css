@@ -264,6 +264,7 @@ outline: 0.75px solid rgba(94, 19, 132, 0.77);
   z-index: 2;
 }
 .playButton:hover{
+  cursor:pointer;
   filter:blur(0px);
 }
 .pauseButton{
@@ -287,5 +288,6 @@ outline: 0.75px solid rgba(94, 19, 132, 0.77);
 }
 
 .pauseButton:hover{
+  cursor:pointer;
   filter:blur(0px);
 }
