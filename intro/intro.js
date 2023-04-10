@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("body").css("background-color", "black").hide().fadeIn(4000);
+    $("body").css("background-color", "black").hide().fadeIn(1000);
     $(".quote1 > p").hide();
 
     $(".logoimg").click(function() {
@@ -8,6 +8,7 @@ $(document).ready(function() {
     });
 });
 
+window.addEventListener('click', backButton);
 
 function IntroQuote() {
     var p = $(".quote1 > p").hide();
@@ -47,7 +48,7 @@ function IntroQuote() {
                         .click(function(event) {
                             event.preventDefault();
                             $("body").fadeOut(2000, function(){
-                                window.location.href = "choice/choice.html";
+                                window.location.href = "../choice/choice.html";
                             });
                         });
                     cur.replaceWith($("<p>").append(link));
@@ -60,3 +61,10 @@ function IntroQuote() {
     })(0);
 }
 
+function backButton(event){
+    if(event.target.id === 'sButton'){
+      $("body").fadeOut(1000, function(){
+        window.location.href = "../choice/choice.html";
+      });
+    }
+}

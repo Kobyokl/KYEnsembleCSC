@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+
+<html> 
+
+<head>
+    <title>Create</title>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href = "create.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <canvas id = 'c'></canvas>
+
+    <audio id="drumsSec" src="sects/drums.mp3"></audio>
+    <audio id="guitarSec" src="sects/guitar.mp3"></audio>
+    <audio id="pianoSec" src="sects/piano.mp3"></audio>
+    <audio id="saxSec" src="sects/sax.mp3"></audio>
+
+    <div class = 'blankoverlay'></div>
+    <div class = "WelcomeOverlay">
+        <h1 class = 'title'>C R E A T E</h1>
+        <textarea class = "welcometextbox" readonly>
+This is the create page! 
+
+This page is simple; your job is to click on the click on the instruments that you want in your ensemble 
+
+Then click the Generate Music button
+
+When you want to add or remove instruments from your ensemble, you can select or deselect the instruments you want or dont want
+
+Then you must click the Generate button again to listen to the update version of the song you made. 
+
+To listen to the music hit the Play button, to stop it hit the stop Button. 
+
+Just like the learn page, the back button here sends you back to the Choosing page. 
+        </textarea>
+        
+        <button class = 'welcomeButton' id = 'wButton' >⠀⠀Begin⠀⠀</button>
+
+    </div>
+    <button class = 'generateButton' id = "gButton"> ⠀⠀Generate⠀⠀</button>
+
+    <img src = "models/backbuton.png" id = 'bButton' class = "backButton">
+
+    <div class = "elems">
+        <div class = "selected">Selected :</div>
+        <div class = "saxophone">Saxophone</div>
+        <div class = "guitar">Guitar</div>
+        <div class = "piano">Piano</div>
+        <div class = "drums">Drums</div>
+        <div class = "create">
+            <button class = 'generateButton' id = "gButton"> ⠀⠀Generate !⠀⠀</button>
+            <button class = "playButton" id="pButton">P L A Y</button>
+            <button class = "pauseButton" id="ppButton">P A U S E</button>
+        </div>
+    </div> 
+
+    <script  type="importmap">{
+        "imports": {
+            "three": "https://threejs.org/build/three.module.js",
+            "three/addons/": "https://threejs.org/examples/jsm/"
+        }
+    }</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+     
+    <script type = 'module' src = 'create.js'></script>
+</body>
+
+</html>

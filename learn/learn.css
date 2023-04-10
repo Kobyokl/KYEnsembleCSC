@@ -1,10 +1,8 @@
+*{overflow: hidden;}
 html, body {
   margin: 0;
   height: 100%;
-}
-
-body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: white;
 }
 
 canvas{
@@ -42,7 +40,6 @@ canvas{
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
   font-size: 20px;
   line-height: 1.5;
   z-index: 2;
@@ -53,36 +50,37 @@ canvas{
   width: 600px;
   height: 300px;
   outline: none;
-  font-size: 16px;
+  text-align: center;
+   
   border-spacing: 16px; 
   line-height: 1.5;
   font-family: 'Gloock';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  color:rgba(0, 0, 0);
   resize:none;
-  color: rgb(4, 4, 24);
   cursor:auto; 
+  overflow-y: scroll;
 }
 
 .title{
   font-size: xx-large;
-  color:rgb(0, 0, 0);
+  color:rgba(94, 19, 132, 0.516);
 }
-.textbox::-webkit-scrollbar {
+.welcometextbox::-webkit-scrollbar {
   width: 0.2em;
 }
 
-.textbox::-webkit-scrollbar-track {
+.welcometextbox::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(38, 34, 34, 0.925);
 }
 
-.textbox::-webkit-scrollbar-thumb {
+.welcometextbox::-webkit-scrollbar-thumb {
 background-color: rgba(94, 19, 132, 0.516);
 outline: 0.75px solid rgba(94, 19, 132, 0.77);
 }
 
- .welcomeButton{
+.welcomeButton{
   align-self: center;
   background-color: #fff;
   background-image: none;
@@ -124,14 +122,9 @@ outline: 0.75px solid rgba(94, 19, 132, 0.77);
 
 .Infoboxes{
   position: absolute;
-  display: auto;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 700px;
-  max-height: 800px;
-  background-color: rgba(255, 255, 255, 0.222);
+
   border-radius: 10px;
   padding: 30px;
   text-align: center;
@@ -144,69 +137,180 @@ outline: 0.75px solid rgba(94, 19, 132, 0.77);
   line-height: 1.5;
   z-index: 1;
   overflow: none;
-  pointer-events: none;
+  pointer-events: auto;
+  overflow-y: scroll;
 }
 
 .pianotextbox{
-  width: 600px;
-  height: 300px;
+  display: none;
+  padding: 20px;
+  background-color: rgba(34, 33, 36, 0.808);
+  color: rgb(219, 210, 179);
+  position: absolute;
+  text-align:left;
+
+  top: 5%; 
+  left: 3%;
+
+  width: 30%;
+  height: 90%;
   outline: none;
-  font-size: 16px;
   border-spacing: 16px; 
+  border-radius: 10px;
   line-height: 1.5;
+  font-size: 24px;
   font-family: 'Gloock';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
   resize:none;
-  color: rgb(4, 4, 24);
   cursor:auto; 
+  pointer-events: auto;
+
+  z-index: 1;
+
+  overflow-y: scroll;
+}
+.pianotextbox::-webkit-scrollbar {
+  width: 0.2em;
 }
 
+.pianotextbox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(38, 34, 34, 0.925);
+}
+
+.pianotextbox::-webkit-scrollbar-thumb {
+background-color: rgba(94, 19, 132, 0.516);
+outline: 0.75px solid rgba(94, 19, 132, 0.77);
+}
 .drumstextbox{
-  width: 600px;
-  height: 300px;
+  display:none; 
+  padding: 20px;
+  background-color: rgba(34, 33, 36, 0.808);
+  color: rgb(219, 210, 179);
+  position: absolute;
+  text-align:left;
+
+  top: 5%; 
+  left: 3%;
+
+  width: 30%;
+  height: 90%;
   outline: none;
-  font-size: 16px;
+   font-size: 24px;
   border-spacing: 16px; 
+  border-radius: 10px;
   line-height: 1.5;
   font-family: 'Gloock';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
   resize:none;
-  color: rgb(4, 4, 24);
   cursor:auto; 
+  overflow-y: scroll;
+  z-index: 1;
+}
+.drumstextbox::-webkit-scrollbar {
+  width: 0.2em;
 }
 
+.drumstextbox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(38, 34, 34, 0.925);
+}
+
+.drumstextbox::-webkit-scrollbar-thumb {
+background-color: rgba(94, 19, 132, 0.516);
+outline: 0.75px solid rgba(94, 19, 132, 0.77);
+}
 .guitartextbox{
-  width: 600px;
-  height: 300px;
+  display:none; 
+  padding: 20px;
+  background-color: rgba(34, 33, 36, 0.808);
+  color: rgb(219, 210, 179);
+  position: absolute;
+  text-align:left;
+
+  top: 5%; 
+  right: 30%;
+
+  width: 30%;
+  height: 90%;
   outline: none;
-  font-size: 16px;
+   font-size: 24px;
   border-spacing: 16px; 
+  border-radius: 10px;
   line-height: 1.5;
   font-family: 'Gloock';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
   resize:none;
-  color: rgb(4, 4, 24);
   cursor:auto; 
+  overflow-y: scroll;
+  z-index: 1;
+
+}
+.guitartextbox::-webkit-scrollbar {
+  width: 0.2em;
 }
 
+.guitartextbox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(38, 34, 34, 0.925);
+}
+
+.guitartextbox::-webkit-scrollbar-thumb {
+background-color: rgba(94, 19, 132, 0.516);
+outline: 0.75px solid rgba(94, 19, 132, 0.77);
+}
 .saxtextbox{
-  width: 600px;
-  height: 300px;
+  display:none; 
+  padding: 20px;
+  background-color: rgba(34, 33, 36, 0.808);
+  color: rgb(219, 210, 179);
+  position: absolute;
+  overflow-y: scroll;
+  text-align:left;
+
+  top: 2.3%; 
+  left: 25%;
+
+  width: 30%;
+  height: 90%;
   outline: none;
-  font-size: 16px;
+   font-size: 24px;
   border-spacing: 16px; 
+  border-radius: 10px;
   line-height: 1.5;
   font-family: 'Gloock';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
   resize:none;
-  color: rgb(4, 4, 24);
   cursor:auto; 
+  z-index: 1;
+}
+.saxtextbox::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+.saxtextbox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(38, 34, 34, 0.925);
+}
+
+.saxtextbox::-webkit-scrollbar-thumb {
+background-color: rgba(94, 19, 132, 0.516);
+outline: 0.75px solid rgba(94, 19, 132, 0.77);
+}
+.backButton{
+  display: block;
+  position:absolute;
+  bottom: 5%;
+  right:3%;
+  filter: blur(4px); 
+  transition-duration:500ms;
+}
+.backButton:hover{
+  cursor:pointer;
+  filter:blur(0px);
+}
+
+button{
+  align-items: center;
+  cursor:pointer;
+  font-style: 'Gloock';
+  border-radius: 5px;
+  background: wheat;
+  width: 100%;
+  height: 5%;
 }

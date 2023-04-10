@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
-$("body").css("background-color", "white").hide().fadeIn(2000);
-
+$("body").css("background-color", "white").hide().fadeIn(3000);
 
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({antialias: false, canvas});
@@ -122,7 +121,7 @@ function render() {
     }
   }
   if(focused == false){
-    theta += 0.6;
+    theta += 0.3;
     camera.position.x = sinradius * Math.sin( THREE.MathUtils.degToRad( theta ) );
     camera.position.y = (cosradius * Math.sin( THREE.MathUtils.degToRad( theta ) ) + 15);
     camera.position.z = cosradius * Math.cos( THREE.MathUtils.degToRad( theta ) );
@@ -153,6 +152,7 @@ renderer.domElement.addEventListener('click', onGuitarClick);
 renderer.domElement.addEventListener('click', onDrumClick);
 
 window.addEventListener('click', hideElms);
+window.addEventListener('click', backButton);
 
 
 function onSaxClick(event) {
@@ -193,6 +193,17 @@ function onSaxClick(event) {
       }
     });
   }
+  if(intersects.length > 0){
+    $('.guitartextbox').css('display', 'none');
+    $('.pianotextbox').css('display', 'none');
+    $('.drumstextbox').css('display', 'none');
+    setTimeout(function() {
+      $('.guitartextbox').css('display', 'none');
+      $('.pianotextbox').css('display', 'none');
+      $('.drumstextbox').css('display', 'none');
+      $('.saxtextbox').css('display', 'block');
+    }, 3000);
+  }
 }
 function onPianoClick(event) {
   // Calculate the mouse position in normalized device coordinates
@@ -230,10 +241,23 @@ function onPianoClick(event) {
           },
           onComplete: function () {
             // add the textbox and the learn more thingy, as well as the sound sample
+
+
           }
         });
       }
     });
+  }
+  if(intersects.length > 0){
+    $('.guitartextbox').css('display', 'none');
+    $('.saxtextbox').css('display', 'none');
+    $('.drumstextbox').css('display', 'none');
+    setTimeout(function() {
+      $('.guitartextbox').css('display', 'none');
+      $('.saxtextbox').css('display', 'none');
+      $('.drumstextbox').css('display', 'none');
+      $('.pianotextbox').css('display', 'block');
+    }, 3000);
   }
 }
 function onGuitarClick(event) {
@@ -249,7 +273,7 @@ function onGuitarClick(event) {
   // Find the intersection between the ray and the cube
   const intersects = raycaster.intersectObject(guitarroot);
 
-  // If there is an intersection, log a message to the console
+  // If there is an intersection (instrument is clicked on) then go to that instrument and display the textbox that coorelates to it
   if (intersects.length > 0) {
     focused = true;
     console.log('Guitar');
@@ -263,6 +287,7 @@ function onGuitarClick(event) {
       onUpdate: function () {
       },
       onComplete: function () {
+        console.log("animdone");
         TweenMax.to(camera.rotation, 2, {
           x: -0.380841747,
           y: 0.48955075327,
@@ -274,9 +299,19 @@ function onGuitarClick(event) {
             // add the textbox and the learn more thingy, as well as the sound sample
           }
         });
-      }
+      } 
     });
-
+  }
+  if(intersects.length > 0){
+    $('.pianotextbox').css('display', 'none');
+    $('.saxtextbox').css('display', 'none');
+    $('.drumstextbox').css('display', 'none');
+    setTimeout(function() {
+      $('.saxtextbox').css('display', 'none');
+      $('.drumstextbox').css('display', 'none');
+      $('.pianotextbox').css('display', 'none');
+      $('.guitartextbox').css('display', 'block');
+    }, 3000);
   }
 }
 function onDrumClick(event) {
@@ -320,13 +355,32 @@ function onDrumClick(event) {
       }
     });
   }
+  if(intersects.length > 0){
+    $('.guitartextbox').css('display', 'none');
+    $('.saxtextbox').css('display', 'none');
+    $('.pianotextbox').css('display', 'none');
+    setTimeout(function() {
+      $('.saxtextbox').css('display', 'none');
+      $('.drumstextbox').css('display', 'none');
+      $('.guitartextbox').css('display', 'none');
+      $('.drumstextbox').css('display', 'block');
+    }, 3000);
+  }
 }
 
 //crate the onclick events for the buttons in the threejs scene
 function hideElms(event){
   if (event.target.id === 'wButton') {
-    console.log('Button clicked!');
     $('.WelcomeOverlay').css('display', 'none');
     $('.blankoverlay').css('display', 'none');
+  } 
+}
+
+function backButton(event){
+  if(event.target.id === 'bButton'){
+    $("body").fadeOut(1000, function(){
+      window.history.back(); 
+    });
+    return false;
   }
-} 
+}

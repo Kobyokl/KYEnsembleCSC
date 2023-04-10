@@ -19,43 +19,38 @@ let allowobjs = [];
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 0, 20);
 
-
-const center = new THREE.Vector3(0, 0, 0);
-camera.lookAt(center);
-
 // Create a dark gray plane
-const geometry1 = new THREE.PlaneGeometry(21, 21);
-const material1 = new THREE.MeshBasicMaterial({ color: 0x333333 });
+const geometry1 = new THREE.PlaneGeometry(42, 42);
+const material1 = new THREE.MeshBasicMaterial({ color: 0xF4DF4E });
 const plane1 = new THREE.Mesh(geometry1, material1);
-plane1.position.set(-10.5, 0, 0);
+plane1.position.set(-21, 0, 0);
 scene.add(plane1);
 
 // Create a dark orange plane
-const geometry2 = new THREE.PlaneGeometry(21, 21);
-const material2 = new THREE.MeshBasicMaterial({ color: 0x8e5310 });
+const geometry2 = new THREE.PlaneGeometry(42, 42);
+const material2 = new THREE.MeshBasicMaterial({ color: 0xCCCCFF });
 const plane2 = new THREE.Mesh(geometry2, material2);
-plane2.position.set(10.5, 0, 0);
+plane2.position.set(21, 0, 0);
 scene.add(plane2);
 
 // Create a red cube on the left side
 const geometry3 = new THREE.BoxGeometry(2.5, 2.5, 2.5);
 const material3 = new THREE.MeshBasicMaterial({ color: generateHexColor() });
 const cube1 = new THREE.Mesh(geometry3, material3);
-cube1.position.set(-8, 0, 3);
+cube1.position.set(-5.9, 0, 3);
 scene.add(cube1);
 
 // Create a blue cube on the right side
 const geometry4 = new THREE.BoxGeometry(2.5, 2.5, 2.5);
 const material4 = new THREE.MeshBasicMaterial({ color: generateHexColor() });
 const cube2 = new THREE.Mesh(geometry4, material4);
-cube2.position.set(8, 0, 3);
+cube2.position.set(5.9, 0, 3);
 scene.add(cube2);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(10, 20, 10);
 scene.add(directionalLight);
-
-const fog = new THREE.Fog(0xfcfbf9, 0.01, 100);
+const fog = new THREE.Fog(0xeae4fa, 0.01, 80);
 
 // Add the fog to the scene
 scene.fog = fog;
@@ -69,7 +64,7 @@ cube2.rotation.z = 45;
 allowobjs.push(cube1);
 allowobjs.push(cube2); 
 
-camDrag(); 
+MouseMovListener(); 
 
 renderer.domElement.addEventListener('click', onCube1Click);
 renderer.domElement.addEventListener('click', onCube2Click);
@@ -91,7 +86,7 @@ function onCube1Click(event) {
   if (intersects.length > 0) {
     console.log('Create clicked!');
     $("body").fadeOut(2000, function(){
-      window.location.href = "create.html";
+      window.location.href = "../create/create.html";
     });
   }
 }
@@ -113,7 +108,7 @@ function onCube2Click(event) {
   if (intersects.length > 0) {
     console.log('Time to learn!   !');
     $("body").fadeOut(2000, function(){
-      window.location.href = "learn.html";
+      window.location.href = "../learn/learn.html";
     });
 
   }
@@ -121,6 +116,7 @@ function onCube2Click(event) {
 
 
 let theta = 0; 
+let thetax = 0; 
 const radius = 6;
 
 
@@ -132,22 +128,31 @@ function animate() {
 
   const intersects = raycaster.intersectObjects(allowobjs, true);
 
-
+  //check for intersections if in the ray that was shot from the cursor
+  //(check if the cubes are being hovered over and if they are then make them bigger)
   for(let i = 0; i < intersects.length; i++){
     const obj = intersects[i].object;
-    TweenMax.to(obj.scale, 0.25, { x: 2, y: 2, z: 2, ease: Bounce.easeOut });
+    TweenMax.to(obj.scale, 0.25, { x: 3, y: 3, z: 3, ease: Bounce.easeIn });
   }
 
   TweenMax.to(cube1.scale, 0.5, { x: 1, y: 1, z: 1, ease: Bounce.easeOut });
   TweenMax.to(cube2.scale, 0.5, { x: 1, y: 1, z: 1, ease: Bounce.easeOut });
 
 
-  theta+= 1; 
-
-  camera.position.y = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
-  camera.lookAt(center);
+  //code to make the cubes move around and to keep the camera looking at the position
+  theta += 0.3; 
+  thetax += 0.6;
+  camera.position.y = (radius * Math.sin( THREE.MathUtils.degToRad( theta ) ));
+  camera.position.x = (radius * Math.cos( THREE.MathUtils.degToRad( thetax ) ));
+  
+  camera.lookAt(scene.position);
+  
   cube1.rotation.y += 0.01; 
   cube2.rotation.y -= 0.01; 
+  cube1.rotation.z += 0.01; 
+  cube2.rotation.z -= 0.01; 
+  cube1.rotation.x += 0.01; 
+  cube2.rotation.x -= 0.01; 
 
   renderer.render(scene, camera);
 }
@@ -168,7 +173,9 @@ function generateHexColor() {
 
   return hash;
 }
-function camDrag(){
+
+//function that adds an event listener to the website to check if the mouse has moved and if it has then update the programs information on where the mouse is
+function MouseMovListener(){
   var lastX = 0; 
   var lastY  = 0;
   renderer.domElement.addEventListener('mousemove', onMouseMove);

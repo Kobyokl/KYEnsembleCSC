@@ -6,9 +6,9 @@ body {
 /* animation background css*/ 
 .colbackground{
   animation: animateBg 60s linear infinite;
-  background-image: linear-gradient(180deg,#8d552048,#7451292a,#63431246,#6639142c,#8b5d2954,#72430e63,#a0672567,#52351467,#704d255d,#6e431a7a,#6d4b116b,#583f226c);
+  background-image: linear-gradient(180deg,#8d552048,#7451292a,#63431246,#6639142c,#8b5d2954,#72430e63,#4b311467,#52351467,#704d255d,#6e431a7a,#6d4b116b,#583f226c);
   background-size: 100% 1300%;
-  background-color: black; 
+  background-color: rgb(0, 0, 0); 
   height: 100vh; 
 }
 
@@ -22,6 +22,7 @@ body {
   color: bisque;   
   display: hidden;
   position: absolute;
+  font-style: "Gloock";
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -50,7 +51,24 @@ body {
   cursor: pointer;
   filter: blur(0px);
 }
-
+.skip-button{
+  position:absolute;
+  bottom:2%;
+  right: 2%;
+  transition-duration: 1000ms;
+  filter:blur(4px);
+}
+.skip-button:hover{
+  cursor:pointer;
+  filter:blur(0px);
+}
+.skip{
+  position:absolute;
+  bottom:10%;
+  right: 1.65%;
+  font-style: "Gloock";
+  color:rgb(230, 230, 230);
+}
 .instructions{
   z-index: 1;
   display: block;
